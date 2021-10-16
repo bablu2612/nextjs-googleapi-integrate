@@ -10,7 +10,8 @@ const HomePage = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         position: "relative",
-        height: "500px"
+        height: "500px",
+        width: "100%"
     }
 
     return (
@@ -19,8 +20,12 @@ const HomePage = () => {
                 <title>Home</title>
             </Head>
             <Box style={styling}>
+
+            <Box>
                 <SearchBox />
             </Box>
+            </Box>
+
         </>
     )
 }

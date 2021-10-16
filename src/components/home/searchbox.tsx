@@ -22,19 +22,22 @@ const geocode =(value:any) =>{
     console.log("value",value);
     return (
         <Box className="adventure-section" style={styling} >
-            <Box className="banner-heading">
+               <Box className="banner-heading">
                 <h2>Find your next Keyak or Sup Adventure</h2>
                 </Box>
             <GooglePlacesAutocomplete
+            
                 apiKey="AIzaSyB7zK2NBzkXIbwqYu0E4F4TBSvH6a8T3QI"
-                // onPlaceSelected={(place: PlaceRes, inputRef, autocompleteRef) => }
                 selectProps={{
                     value,
                     onChange: (data: any)=>geocode(data),
                   }}
-                // renderRightButton={SearchIcon}
 
             />
+         <Box className="serch-icon">
+
+            <SearchIcon className="icon-serch" style={{width: 50, height: 50, fill: "yellow"}}/>
+        </Box>
         </Box>
     )
 }
