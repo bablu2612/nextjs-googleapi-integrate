@@ -10,9 +10,9 @@ const getLocation = (latitude: number, langitude: number) => async (
                 dispatch({ type: SET_SITE_LOCATION, payload: res?.data.results });
             }
         }).catch((err) => console.log(err))
-    } catch (err) {
-        const errors = err.response.data.errors;
-        console.log(err.response.data);
+    } catch (err:any) {
+        const errors = err;
+        console.log(err);
     }
 };
 export {
