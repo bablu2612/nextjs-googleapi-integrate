@@ -7,7 +7,7 @@ const getSiteDetail = (siteId: string) => async (
     try {
         await siteDetail(siteId).then((res: any) => {
             if (res?.status === 200) {
-                dispatch({ type: SET_SITE_DETAIL, payload: res?.data.results });
+                dispatch({ type: SET_SITE_DETAIL, payload: res?.data });
             }
         }).catch((err) => console.log(err))
     } catch (err:any) {

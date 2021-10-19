@@ -7,7 +7,7 @@ const getLocation = (latitude: number, langitude: number) => async (
     try {
         await siteLocation(latitude, langitude).then((res: any) => {
             if (res?.status === 200) {
-                dispatch({ type: SET_SITE_LOCATION, payload: res?.data.results });
+                dispatch({ type: SET_SITE_LOCATION, payload: res?.data });
             }
         }).catch((err) => console.log(err))
     } catch (err:any) {

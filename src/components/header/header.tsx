@@ -6,52 +6,48 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-
-
+import classNames from 'classnames';
+import ReorderIcon from '@mui/icons-material/Reorder';
+import { IconButton } from '@mui/material';
 
 const Header = () => {
-
+    const arryData = ["How it works", "Partners", "For businesses", "About us", "Contact"];
+    const [AddClass, setAddClass] = React.useState<Boolean>(false);
     return (
         <HeaderStyles>
-        <Box className="container">
-            <Box className="headerSection">
-                <Box className="logo">
-                    <img src="/logo-gokaya.png" alt="logo" height={"50px"} width={"100px"} />
+            <Box className="container">
+                <Box className="">
+                    <Box className="logo">
+                        <img src="/logo-gokaya.png" alt="logo" height={"50px"} width={"100px"} />
+                    </Box>
+                    <nav className="navbar navbar-default">
+                        <div className="navbar-header">
+                            {AddClass ?
+                                <button type="button" className="close" data-toggle="collapse" onClick={() => setAddClass(false)}>X</button>
+                                :
+                                <IconButton type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" onClick={() => setAddClass(true)}>
+                                    <ReorderIcon />
+                                </IconButton>
+                            }
+                        </div>
+                        <div className={classNames("collapse navbar-collapse", { 'open_collapse_nav': AddClass, " ": !AddClass })} id="navbar-collapse-1">
+                            <List
+                                className="navbar"
+                                sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                                aria-label="contacts"
+                            >
+                                {arryData?.map((value, index) => (
+                                    <ListItem className={`list` + index} disablePadding key={index + 1}>
+                                        <ListItemButton>
+                                            <ListItemText inset primary={value} />
+                                        </ListItemButton>
+                                    </ListItem>
+                                ))}
+                            </List>
+                        </div>
+                    </nav>
                 </Box>
-                <List
-                    className="navbar"
-                    sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-                    aria-label="contacts"
-                >
-                    <ListItem className="firstli" disablePadding>
-                        <ListItemButton>
-                            <ListItemText primary="How it works" />
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem className="secondli"  disablePadding>
-                        <ListItemButton>
-                            <ListItemText inset primary="Partners" />
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem className="thiredli" disablePadding>
-                        <ListItemButton>
-                            <ListItemText inset primary="For businesses" />
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem className="forthli" disablePadding>
-                        <ListItemButton>
-                            <ListItemText inset primary="About us" />
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem className="fiveli"  disablePadding>
-                        <ListItemButton>
-                            <ListItemText inset primary="Contact" />
-                        </ListItemButton>
-                    </ListItem>
-                </List>
             </Box>
-            </Box>
-           
         </HeaderStyles >
     )
 }

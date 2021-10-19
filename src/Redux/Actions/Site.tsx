@@ -6,8 +6,9 @@ const getSearch = (name: string) => async (
     getState: () => { (): any; new(): any; loading: { (): any; new(): any; count: any; }; }) => {
     try {
         await siteSearch(name).then((res: any) => {
+            console.log(res)
             if (res?.status === 200) {
-                dispatch({ type: SET_SITE, payload: res?.data.results });
+                dispatch({ type: SET_SITE, payload: res?.data });
             }
         }).catch((err) => console.log(err))
     } catch (err:any) {

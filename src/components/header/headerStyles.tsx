@@ -1,32 +1,56 @@
 import styled from 'styled-components';
 
 const HeaderStyles = styled.div`
+&&
 .container{
-
-        width: 1170px;
-        margin: 0 auto;
-    
+    width: 1170px;
+    margin: 0 auto;
+    .mobile_header_section {
+        display: none !important;
+    }
     .headerSection{
         display:flex;
         justify-content: space-between;
         .navbar{
             display:flex;
-     }
-     ul.navbar li {
-        margin-left: -136px;
+        }
+        ul.navbar li {
+            margin-left: -136px;
+        }
+        li.firstli {
+            margin-left: -410px !important;
+        }
+        li.thiredli {
+            margin-right: 60px;
+        }
+        .logo img {
+            margin-left: 90px;
+            margin-top: 7px;
+        }
     }
-    li.firstli {
-        margin-left: -410px !important;
+}
+  
+@media(max-width:1900px) {
+    .navbar-header {
+        display: none !important;
     }
-    li.thiredli {
-        margin-right: 60px;
+    .navbar-collapse {
+        display: block !important;
+   }
+}
+
+@media(max-width:757px) {
+    .navbar-collapse {
+        display: none !important;
     }
-    .logo img {
-        margin-left: 90px;
-        margin-top: 7px;
+    .navbar-header {
+        display: block !important;
     }
-       }
+    .open_collapse_nav {
+        display: block !important;
     }
+}  
+
 `
 
 export default HeaderStyles;

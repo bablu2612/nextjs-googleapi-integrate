@@ -5,14 +5,12 @@ import Image from 'next/image'
 import styles from '../../styles/Home.module.css'
 import { connect } from 'react-redux';
 import { AnyAction, bindActionCreators, Dispatch } from 'redux';
-import { getMovies } from '../Redux/Actions/moviesAction';
 import { getSearch } from '../Redux/Actions/Site';
 import { getLocation } from '../Redux/Actions/siteLocation';
 import { getSiteDetail } from '../Redux/Actions/siteDetail';
 import HomePage from './home';
 
 interface IProps {
-  updateAnnouncement: any;
   siteSearch: any;
   siteLocationApi: (lat: number, lng: number) => void;
   siteDetailApi: (siteId: string) => void;
@@ -22,7 +20,7 @@ const Home: NextPage<IProps> = (props) => {
 
   useEffect(() => {
     //props?.updateAnnouncement();
-    props?.siteSearch("CL");
+    // props?.siteSearch("CL");
     props?.siteLocationApi(23.45, 13.45);
     props?.siteDetailApi('aZ5X7HZdidsCcOZlsyOM');
   }, [])
@@ -41,9 +39,7 @@ const mapStateToProps = (state: any) => ({
   value: state,
 })
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
-  updateAnnouncement: bindActionCreators(getMovies, dispatch),
-  siteSearch: bindActionCreators(getSearch, dispatch),
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({  
   siteLocationApi: bindActionCreators(getLocation, dispatch),
   siteDetailApi: bindActionCreators(getSiteDetail, dispatch)
 })
