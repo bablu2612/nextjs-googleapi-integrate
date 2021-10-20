@@ -9,27 +9,28 @@ import { getSearch } from '../Redux/Actions/Site';
 import { getLocation } from '../Redux/Actions/siteLocation';
 import { getSiteDetail } from '../Redux/Actions/siteDetail';
 import HomePage from './home';
+import MediaCard from '../components/home/Card';
+import { Grid } from '@mui/material';
 
 interface IProps {
   siteDetailApi: (siteId: string) => void;
   value: any
 }
+
 const Home: NextPage<IProps> = (props) => {
 
   useEffect(() => {
-    //props?.updateAnnouncement();
-    // props?.siteSearch("CL");
     props?.siteDetailApi('aZ5X7HZdidsCcOZlsyOM');
   }, [])
 
   console.log(props);
   return (
-    <div className="">
+    <div className="Main-section">
       <Head>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7zK2NBzkXIbwqYu0E4F4TBSvH6a8T3QI&libraries=places"></script>
         <title>home</title>
       </Head>
-      <HomePage />
+      <HomePage />    
     </div>
   )
 }

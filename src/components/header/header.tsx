@@ -18,7 +18,7 @@ const Header = () => {
             <Box className="container">
                 <Box className="Header_section-mains">
                     <Box className="logo">
-                        <img src="/logo-gokaya.png" alt="logo" height={"50px"} width={"100px"} />
+                   <a href="/"> <img src="/logo-gokaya.png" alt="logo" height={"50px"} width={"100px"} /></a>
                     </Box>
                     <nav className="navbar navbar-default">
                         <div className="navbar-header">

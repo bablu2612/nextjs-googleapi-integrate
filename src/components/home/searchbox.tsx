@@ -1,52 +1,18 @@
 
 import React from 'react';
-import PlacesAutocomplete, {
-    geocodeByAddress,
-    getLatLng,
-} from 'react-places-autocomplete';
-import { AnyAction, bindActionCreators, Dispatch } from 'redux';
-import { getLocation } from '../../Redux/Actions/siteLocation';
-import { connect } from 'react-redux';
+import PlacesAutocomplete from 'react-places-autocomplete';
 import { Search } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
-import { useRouter } from 'next/router';
 
-interface IProps {
-    siteLocationApi: (lat: number, lng: number) => void;
-    value: any
+interface Iprops {
+    handleChange:(address:string) => void;
+    handleSelect:(address:string) => void;
+    state: { addresses:string };
+    onSearchClick:()=>void;
+    siteSearchData:any;
 }
 
-const LocationSearchInput: React.FC<IProps> = (props) => {
-
-    const router = useRouter();
-    const [state, setState] = React.useState<any>({ addresses: "" });
-
-    const handleChange = (address: string) => {
-        geocodeByAddress(address)
-            .then(results => getLatLng(results[0]))
-            .then(latLng => {
-                console.log('Success', latLng);
-                props?.siteLocationApi(latLng?.lat, latLng?.lng);
-            })
-            .catch(error => console.error('Error', error));
-        setState({ addresses: address });
-    };
-
-    const handleSelect = (address: string) => {
-        setState({ addresses: address });
-        geocodeByAddress(address)
-            .then(results => getLatLng(results[0]))
-            .then(latLng => {
-                props?.siteLocationApi(latLng?.lat, latLng?.lng);
-            })
-            .catch(error => console.error('Error', error));
-    };
-
-    const onSearchClick = () => {
-        if (state?.addresses !== "") {
-            router.push({ pathname: "/detail", query: { name: state?.addresses } })
-        }
-    }
+const LocationSearchInput: React.FC<Iprops> = ({handleChange, handleSelect, onSearchClick, state, siteSearchData}) => {
     return (
         <>
          <div className="serch-section-btn"> 
@@ -88,12 +54,11 @@ const LocationSearchInput: React.FC<IProps> = (props) => {
                                                 );
                                             })
                                         }
-
                                         <li className="club">Club:</li>
-                                        {props?.value?.[0]?.typeOfProducts?.map((data: string, index: number) => (
+                                        {siteSearchData?.map((data: {name:string}, index: number) => (
                                             <li className="suggestion-item" onClick={() => console.log('hello jnaab')} key={index + 1} style={{
                                                 backgroundColor: '#fafafa', cursor: 'pointer'
-                                            }}><span><img src="/home.png" width="15px" height="15px" /></span><span>{data}</span></li>
+                                            }}><span><img src="/home.png" width="15px" height="15px" /></span><span>{data?.name}</span></li>
                                         ))}
 
                                     </>
@@ -103,18 +68,12 @@ const LocationSearchInput: React.FC<IProps> = (props) => {
                     </div>
                 )
                 }
-            </PlacesAutocomplete >
+                      </PlacesAutocomplete >
                       <IconButton onClick={() => onSearchClick()}> <Search /></IconButton>
             </div>
 
         </>
     );
 }
-const mapStateToProps = (state: any) => ({
-    value: state?.siteLocationData?.siteLocationData,
-})
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
-    siteLocationApi: bindActionCreators(getLocation, dispatch),
-})
-export default connect(mapStateToProps, mapDispatchToProps)(LocationSearchInput);
+export default LocationSearchInput;
