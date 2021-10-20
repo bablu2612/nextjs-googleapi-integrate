@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head'
 import SearchBox from '../../components/home/searchbox';
 import { Box } from '@mui/material';
+import Link  from 'next/link';
 import type { NextPage } from 'next';
 import styled from 'styled-components';
 import MediaCard from '../../components/home/Card';
@@ -69,18 +70,16 @@ const HomePage: NextPage<IProps> = (props) => {
                 </Box>
                 <Box component= "div" className="main-card">
                     <Grid display="flex" className="innercard">
-                        <Grid item xs={3}>
-                            <MediaCard />
-                        </Grid>
-                        <Grid item xs={3}>
-                            <MediaCard />
-                        </Grid>
-                        <Grid item xs={3}>
-                            <MediaCard />
-                        </Grid>
-                        <Grid item xs={3}>
-                            <MediaCard />
-                        </Grid>
+                        {props?.siteSearchData?.map((data:{address:string, name:string},index:number)=>(
+                           
+                                    <Grid item xs={3}> 
+                                    <Link href={`/detail?name=${data?.name}`}>
+                                    <a>
+                                        <MediaCard address={data?.address} name={data?.name}/>
+                                    </a>    
+                                    </Link>
+                                    </Grid>
+                        ))}
                     </Grid>
                 </Box>
             </HomeStyle>

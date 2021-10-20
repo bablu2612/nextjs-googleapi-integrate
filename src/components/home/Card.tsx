@@ -8,7 +8,11 @@ import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import RoomIcon from '@mui/icons-material/Room';
 
-export default function MediaCard() {
+interface Iprops {
+    name: string;
+    address: string;
+}
+export default function MediaCard(props:Iprops) {
     return (
         <Card sx={{ maxWidth: 345 }}>
             <Box className="image">
@@ -19,7 +23,7 @@ export default function MediaCard() {
                 alt="green iguana"
             />
             <Typography gutterBottom variant="h5" component="div">
-                    Lizard1
+                    {props?.name}
                 </Typography>
                 </Box>
             <CardContent>
@@ -27,7 +31,7 @@ export default function MediaCard() {
                
                 <Box className="map-location">
                 <RoomIcon />
-                london
+                {props?.address}
             </Box>
                </div>               
                 <div className="leftSec">
