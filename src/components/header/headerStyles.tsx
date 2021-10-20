@@ -30,7 +30,7 @@ const HeaderStyles = styled.div`
     }
 }
   
-@media(max-width:1900px) {
+@media(max-width:2500px) {
     .navbar-header {
         display: none !important;
     }

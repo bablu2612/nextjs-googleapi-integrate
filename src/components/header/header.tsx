@@ -8,7 +8,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import classNames from 'classnames';
 import ReorderIcon from '@mui/icons-material/Reorder';
-import { IconButton } from '@mui/material';
+import { IconButton, Button } from '@mui/material';
 
 const Header = () => {
     const arryData = ["How it works", "Partners", "For businesses", "About us", "Contact"];
@@ -16,7 +16,7 @@ const Header = () => {
     return (
         <HeaderStyles>
             <Box className="container">
-                <Box className="">
+                <Box className="Header_section-mains">
                     <Box className="logo">
                         <img src="/logo-gokaya.png" alt="logo" height={"50px"} width={"100px"} />
                     </Box>
@@ -43,6 +43,9 @@ const Header = () => {
                                         </ListItemButton>
                                     </ListItem>
                                 ))}
+                                <ListItem className="book_now button">
+                                    <Button onClick={() => console.log("book now")}>Book Now</Button>
+                                </ListItem>
                             </List>
                         </div>
                     </nav>

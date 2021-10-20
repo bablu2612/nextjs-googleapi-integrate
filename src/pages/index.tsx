@@ -11,8 +11,6 @@ import { getSiteDetail } from '../Redux/Actions/siteDetail';
 import HomePage from './home';
 
 interface IProps {
-  siteSearch: any;
-  siteLocationApi: (lat: number, lng: number) => void;
   siteDetailApi: (siteId: string) => void;
   value: any
 }
@@ -21,14 +19,14 @@ const Home: NextPage<IProps> = (props) => {
   useEffect(() => {
     //props?.updateAnnouncement();
     // props?.siteSearch("CL");
-    props?.siteLocationApi(23.45, 13.45);
     props?.siteDetailApi('aZ5X7HZdidsCcOZlsyOM');
   }, [])
 
   console.log(props);
   return (
-    <div className="container">
+    <div className="">
       <Head>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7zK2NBzkXIbwqYu0E4F4TBSvH6a8T3QI&libraries=places"></script>
         <title>home</title>
       </Head>
       <HomePage />
@@ -39,8 +37,7 @@ const mapStateToProps = (state: any) => ({
   value: state,
 })
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({  
-  siteLocationApi: bindActionCreators(getLocation, dispatch),
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
   siteDetailApi: bindActionCreators(getSiteDetail, dispatch)
 })
 

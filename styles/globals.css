@@ -11,6 +11,7 @@ body {
   left: 0;
   right: 0;
 } */
+
 a {
   color: inherit;
   text-decoration: none;
@@ -77,26 +78,51 @@ button.button1 {
 }
 
 /*map-section*/
-
+.hello_my_name > div {
+  height: 50% !important;
+}
+body {
+  overflow-x: hidden;
+}
 .map-section {
+  display: -webkit-flex;
+  display: -moz-box;
   display: flex;
+  -webkit-justify-content: space-between;
+  -moz-box-pack: justify;
   justify-content: space-between;
   background-color: #ebeae6;
   margin-top: 50px;
+  overflow: hidden;
+  width: 100vw!important;
+  transform: translateX(-50%);
+  margin-left: 50%;
+  max-width: unset;
+  /* padding: 25px 0px; */
+  height: 300px;
+}
+.map-location.MuiBox-root.css-0 {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding-top: 50px;
 }
 
 .map-combine-data {
   display: flex;
   padding-top: 50px;
-  justify-content: space-between;
+  justify-content: center;
+  width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
 }
-.map-location.MuiBox-root.css-0 {
+/* .map-location.MuiBox-root.css-0 {
   padding-top: 50px;
-}
+} */
 
-.map-location.MuiBox-root.css-0 {
+/* .map-location.MuiBox-root.css-0 {
   margin-left: -175px;
-}
+} */
 
 /*last-section*/
 .detail-section-content {
@@ -134,9 +160,7 @@ ul.navbar {
 ul.navbar {
   margin-right: 390px;
 }
-.MuiListItemButton-root.MuiListItemButton-gutters.MuiButtonBase-root.css-cvhtoe-MuiButtonBase-root-MuiListItemButton-root {
-  width: 199px;
-}
+
 li.firstli {
   margin-right: -80px;
 }
@@ -147,10 +171,16 @@ li.forthli {
   margin-right: -55px;
 }
 .logo.MuiBox-root.css-0 {
-  margin-left: 80px;
+ 
   margin-top: 10px;
+    flex: 0 0 20%;
+    max-width: 20%;
 }
-span.Oppettider {
+.Header_section-mains nav.navbar {
+  flex: 0 0 70%;
+  max-width: 70%;
+}
+/* span.Oppettider {
   margin-left: -120px;
 }
 span.Oppettider1 {
@@ -158,10 +188,10 @@ span.Oppettider1 {
 }
 span.Oppettider2 {
   margin-left: -120px;
-}
-.map-location {
+} */
+/* .map-location {
   margin-left: -120px !important;
-}
+} */
 
 .map-email-detail.MuiBox-root.css-0 {
   margin: 0px 70px;
@@ -199,6 +229,7 @@ span.Oppettider2 {
     justify-content: unset;
     background-color: #ebeae6;
     margin-top: 50px;
+    overflow: hidden;
   }
   .map-class {
     padding-top: 50px;
@@ -334,4 +365,200 @@ span.Oppettider2 {
 
 .css-3il4n3-MuiPaper-root-MuiAppBar-root {
   background-color: #000 !important;
+}
+
+
+
+.Header_section-mains {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Header_section-mains nav.navbar ul {
+  display: flex!important;
+  flex-direction: row;
+  width: 100%;
+  max-width: 100%;
+}
+.Header_section-mains nav.navbar ul li {
+  width: auto!important;
+}
+.container {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 100%;
+}
+.Header_section-mains nav.navbar ul li span.MuiTypography-root {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1d4c31;
+}
+.Header_section-mains nav.navbar ul li .MuiListItemText-root {
+  padding: 0;
+  text-align: center;
+}
+.Header_section-mains nav.navbar ul li button {
+  background: #1d4c31;
+  color: #fff;
+  padding: 9px 15px;
+  border-radius: 30px;
+  font-weight: 700;
+}
+.home-banner-sec {
+  text-align: center;
+  padding: 100px 0;
+}
+.home-banner-sec h1 {
+  color: #fff;
+}
+.serch-section-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 10px auto;
+  position: relative;
+}
+.serch-section-btn input.location-search-input {
+  width: 100%;
+  height: 50px;
+  border-radius: 17px;
+  border: 0;
+  padding: 0 19px;
+  /* border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0; */
+}
+.serch-section-btn button.MuiButtonBase-root {
+  position: absolute;
+  right: 5px;
+  top: 6px;
+}
+.serch-section-btn button.MuiButtonBase-root svg path {
+  fill: red;
+}
+.serch-section-btn > div {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.serch-section-btn ul {
+  list-style: none;
+  background: #fff;
+  /* border: 1px solid red; */
+  border-top: 0;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  overflow: hidden;
+  padding-right: 35px;
+}
+.serch-section-btn input:active, .serch-section-btn input:focus {
+  border-top: 1px solid red;
+}
+.serch-section-btn ul li {
+  text-align: left;
+}
+.serch-section-btn ul li:first-child {
+  font-size: 17px;
+  font-weight: 700;
+}
+.serch-section-btn ul li.suggestion-item, .serch-section-btn ul li.suggestion-item--active  {
+  font-size: 15px;
+  padding: 9px 0px;
+  border-bottom: 1px solid #e2e2e2;
+}
+.serch-section-btn ul li.suggestion-item--active:hover span, .serch-section-btn ul li.suggestion-item:hover span
+{
+  color:#1d4c31;
+}
+.serch-section-btn ul li span + span {
+  color: gray;
+  font-size: 12px;
+  margin-left: 15px;
+}
+li.club {
+  margin-top: 20px;
+  font-weight: 600;
+}
+.serch-section-btn input.location-search-input.focus-visible + .autocomplete-dropdown-container ul{
+  
+  border: 1px solid red;
+  
+}
+.DetailStyles-sc-1a0cuus-0 .image-mage {
+  display: flex;
+  align-items: center;
+}
+.DetailStyles-sc-1a0cuus-0 .image-mage .detail__ImageStyle-sc-7ljc2q-0 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  height: 300px;
+}
+.DetailStyles-sc-1a0cuus-0 .image-mage .detail__ImageStyle-sc-7ljc2q-0 p.melmo-text {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: end;
+  font-size: 40px;
+  padding: 228px 50px 0 25px;
+}
+.image-details .images_sections {
+  align-items: center;
+}
+.image-details .images_sections .produkter img {
+  width: 100%;
+  max-width: 46px;
+}
+.images_sections .produkter:first-child {
+  flex: 0 0 33%;
+  text-align: left;
+  color: gray;
+  font-weight: 600;
+  font-size: 19px;
+}
+.belvam button {
+  border-color: gray;
+  color: gray;
+  padding: 5px 0px;
+  background: #e2e2e2;
+  margin-bottom: 18px;
+}
+.map-details.MuiBox-root.css-0 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+.map-class {
+  flex: 0 0 50%;
+  max-width: 50%;
+  width: 100%!important;
+}
+.belvam > span {
+  position: relative;
+  top: -7px;
+}
+.image-details p.lorem {
+  line-height: 28px;
+  color: black;
+  opacity: 0.7;
+}
+.map-combine-data .map-deta.MuiBox-root.css-0 span {
+  font-weight: 600;
+}
+.map-combine-data .map-deta.MuiBox-root.css-0 {
+  line-height: 37px;
+  color: #777272;
+}
+.map-combine-data .map-email-detail.MuiBox-root.css-0 {
+  line-height: 38px;
+}
+.map-combine-data .map-email-detail.MuiBox-root.css-0 a {
+  color: gray;
+  font-weight: 700;
+  font-size: 12px;
+  margin-left: 15px;
+}
+.detail-section-content p {
+    font-size: 14px;
+    opacity: 0.7;
+    color: black;
 }

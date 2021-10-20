@@ -10,7 +10,7 @@ const DetailStyles = styled.div`
         }
     }
     .hello_my_name > div {
-        height: 95% !important;
+        height: 76% !important;
     }
     .images_sections{
         display:flex;

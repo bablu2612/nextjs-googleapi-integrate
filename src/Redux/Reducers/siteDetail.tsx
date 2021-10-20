@@ -8,7 +8,7 @@ const siteDetailReducer = (state = initialState, action: { type: string; payload
     const { type, payload } = action;
     switch (type) {
         case SET_SITE_DETAIL:
-            return { ...state, siteDetailData: payload?.length > 0 ? payload : [] };
+            return { ...state, siteDetailData: payload };
         default:
             return state;
     }

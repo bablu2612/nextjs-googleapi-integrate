@@ -1,53 +1,120 @@
+
 import React from 'react';
-import GooglePlacesAutocomplete, { geocodeByPlaceId, geocodeByAddress } from 'react-google-places-autocomplete';
-import { Box } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import PlacesAutocomplete, {
+    geocodeByAddress,
+    getLatLng,
+} from 'react-places-autocomplete';
+import { AnyAction, bindActionCreators, Dispatch } from 'redux';
+import { getLocation } from '../../Redux/Actions/siteLocation';
+import { connect } from 'react-redux';
+import { Search } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
 import { useRouter } from 'next/router';
 
-const SearchBox = () => {
-    const [values, setValue] = React.useState(null);
+interface IProps {
+    siteLocationApi: (lat: number, lng: number) => void;
+    value: any
+}
+
+const LocationSearchInput: React.FC<IProps> = (props) => {
+
     const router = useRouter();
-    const styling: any = {
-        maxWidth: "500px",
-        width: "100%",
-        position: "absolute",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%)",
-    }
-    const geocode = (value: any) => {
-        if (values) {
-            setValue(null);
-        } else {
-            setValue(value);
-            router.push({
-                pathname: '/detail',
-                query: { name: value?.value?.structured_formatting?.main_text },
+    const [state, setState] = React.useState<any>({ addresses: "" });
+
+    const handleChange = (address: string) => {
+        geocodeByAddress(address)
+            .then(results => getLatLng(results[0]))
+            .then(latLng => {
+                console.log('Success', latLng);
+                props?.siteLocationApi(latLng?.lat, latLng?.lng);
             })
+            .catch(error => console.error('Error', error));
+        setState({ addresses: address });
+    };
 
+    const handleSelect = (address: string) => {
+        setState({ addresses: address });
+        geocodeByAddress(address)
+            .then(results => getLatLng(results[0]))
+            .then(latLng => {
+                props?.siteLocationApi(latLng?.lat, latLng?.lng);
+            })
+            .catch(error => console.error('Error', error));
+    };
 
+    const onSearchClick = () => {
+        if (state?.addresses !== "") {
+            router.push({ pathname: "/detail", query: { name: state?.addresses } })
         }
     }
     return (
-        <Box className="adventure-section" style={styling} >
-            <Box className="banner-heading">
-                <h2>Find your next Keyak or Sup Adventure</h2>
-            </Box>
-            <GooglePlacesAutocomplete
-                apiKey="AIzaSyB7zK2NBzkXIbwqYu0E4F4TBSvH6a8T3QI"
-                selectProps={{
-                    values,
-                    onChange: (data: any) => geocode(data),
-                    option: (provided: any) => ({
-                        ...provided,
-                        color: 'white',
-                    }),
-                }}
-            />
-            <Box className="serch-icon">
-                <SearchIcon className="icon-serch" style={{ width: 50, height: 50, fill: "yellow" }} />
-            </Box>
-        </Box>
-    )
+        <>
+         <div className="serch-section-btn"> 
+            <PlacesAutocomplete
+                value={state?.addresses}
+                onChange={handleChange}
+                onSelect={handleSelect}
+            >
+                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                    <div>
+                        <input
+                            {...getInputProps({
+                                placeholder: 'Search Places ...',
+                                className: 'location-search-input',
+                            })}
+                        />
+                        <div className="autocomplete-dropdown-container">
+                            {/* {loading && <div>Loading...</div>} */}
+                            <ul>
+                                {suggestions?.length > 0 &&
+                                    <>
+                                        <li> Locations:</li>
+                                        {
+                                            suggestions.map((suggestion: any, index: number) => {
+                                                console.log("suggestion", suggestion);
+                                                const className = suggestion.active ? 'suggestion-item--active' : 'suggestion-item';
+                                                const style = suggestion.active
+                                                    ? {
+                                                        backgroundColor: '#fafafa', cursor: 'pointer'
+                                                    }
+                                                    : {
+                                                        backgroundColor: '#ffffff', cursor: 'pointer'
+                                                    };
+                                                return (
+                                                    <li {...getSuggestionItemProps(suggestion, { className, style })} key={index + 1}>
+                                                        <span><img src="/placeholder.png" width="15px" height="15px" /></span><span>{suggestion.description}</span>
+                                                    </li>
+
+                                                );
+                                            })
+                                        }
+
+                                        <li className="club">Club:</li>
+                                        {props?.value?.[0]?.typeOfProducts?.map((data: string, index: number) => (
+                                            <li className="suggestion-item" onClick={() => console.log('hello jnaab')} key={index + 1} style={{
+                                                backgroundColor: '#fafafa', cursor: 'pointer'
+                                            }}><span><img src="/home.png" width="15px" height="15px" /></span><span>{data}</span></li>
+                                        ))}
+
+                                    </>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                )
+                }
+            </PlacesAutocomplete >
+                      <IconButton onClick={() => onSearchClick()}> <Search /></IconButton>
+            </div>
+
+        </>
+    );
 }
-export default SearchBox;
+const mapStateToProps = (state: any) => ({
+    value: state?.siteLocationData?.siteLocationData,
+})
+
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
+    siteLocationApi: bindActionCreators(getLocation, dispatch),
+})
+export default connect(mapStateToProps, mapDispatchToProps)(LocationSearchInput);
