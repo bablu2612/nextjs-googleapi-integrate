@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head'
 import SearchBox from '../../components/home/searchbox';
 import { Box } from '@mui/material';
-import Link  from 'next/link';
+import Link from 'next/link';
 import type { NextPage } from 'next';
 import styled from 'styled-components';
 import MediaCard from '../../components/home/Card';
 import { Grid } from '@mui/material';
-import {geocodeByAddress,getLatLng} from 'react-places-autocomplete';
+import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { AnyAction, bindActionCreators, Dispatch } from 'redux';
 import { getLocation } from '../../Redux/Actions/siteLocation';
 import { connect } from 'react-redux';
@@ -25,9 +25,9 @@ const HomeStyle = styled.div`
 `;
 interface IProps {
     siteLocationApi: (lat: number, lng: number) => void;
-    siteSearch: (name:string) => void;
+    siteSearch: (name: string) => void;
     value: any;
-    siteSearchData:any;
+    siteSearchData: any;
 }
 
 const HomePage: NextPage<IProps> = (props) => {
@@ -36,11 +36,11 @@ const HomePage: NextPage<IProps> = (props) => {
 
     const handleChange = (address: string) => {
         props?.siteSearch(address);
-        getGeoFunction(address);
+        // getGeoFunction(address);
         setState({ addresses: address });
     };
 
-    const getGeoFunction = async(address:string) =>{
+    const getGeoFunction = async (address: string) => {
         await geocodeByAddress(address).then(results => getLatLng(results[0])).then(latLng => {
             props?.siteLocationApi(latLng?.lat, latLng?.lng);
         }).catch(error => console.error('Error', error));
@@ -54,7 +54,7 @@ const HomePage: NextPage<IProps> = (props) => {
 
     const onSearchClick = () => {
         if (state?.addresses !== "") {
-            router.push({ pathname: "/detail", query: { name: state?.addresses } })
+            router.push({ pathname: `/detail/${"ksjdfklsjdlf"}` })
         }
     }
     return (
@@ -65,20 +65,20 @@ const HomePage: NextPage<IProps> = (props) => {
             <HomeStyle>
                 <Box component="div" className="home-banner-sec">
                     <h1>Find your next kynak here is description</h1>
-                    <SearchBox handleChange={handleChange} handleSelect={handleSelect} onSearchClick={onSearchClick} state={state} 
-                    siteSearchData={props?.siteSearchData}/>
+                    <SearchBox handleChange={handleChange} handleSelect={handleSelect} onSearchClick={onSearchClick} state={state}
+                        siteSearchData={props?.siteSearchData} />
                 </Box>
-                <Box component= "div" className="main-card">
+                <Box component="div" className="main-card">
                     <Grid display="flex" className="innercard">
-                        {props?.siteSearchData?.map((data:{address:string, name:string},index:number)=>(
-                           
-                                    <Grid item xs={3}> 
-                                    <Link href={`/detail?name=${data?.name}`}>
+                        {props?.value?.map((data: { id: string, address: string, name: string }, index: number) => (
+
+                            <Grid item xs={3}>
+                                <Link href={`/detail/${data?.id}`}>
                                     <a>
-                                        <MediaCard address={data?.address} name={data?.name}/>
-                                    </a>    
-                                    </Link>
-                                    </Grid>
+                                        <MediaCard address={data?.address} name={data?.name} />
+                                    </a>
+                                </Link>
+                            </Grid>
                         ))}
                     </Grid>
                 </Box>

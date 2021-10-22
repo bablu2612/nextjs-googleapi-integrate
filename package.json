@@ -42,6 +42,7 @@
     "@types/react-redux": "^7.1.19",
     "@types/recompose": "^0.30.8",
     "@types/styled-components": "^5.1.15",
+    "babel-plugin-styled-components": "^1.13.3",
     "eslint": "8.0.1",
     "eslint-config-next": "11.1.2",
     "typescript": "4.4.4"

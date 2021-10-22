@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import HeaderStyles from './headerStyles';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -9,16 +8,17 @@ import ListItemText from '@mui/material/ListItemText';
 import classNames from 'classnames';
 import ReorderIcon from '@mui/icons-material/Reorder';
 import { IconButton, Button } from '@mui/material';
+import HeaderWork from './headerStyles';
 
 const Header = () => {
     const arryData = ["How it works", "Partners", "For businesses", "About us", "Contact"];
     const [AddClass, setAddClass] = React.useState<Boolean>(false);
     return (
-        <HeaderStyles>
-            <Box className="container">
+        <Box className="container">
+            <HeaderWork>
                 <Box className="Header_section-mains">
                     <Box className="logo">
-                   <a href="/"> <img src="/logo-gokaya.png" alt="logo" height={"50px"} width={"100px"} /></a>
+                        <a href="/"> <img src="/logo-gokaya.png" alt="logo" height={"50px"} width={"100px"} /></a>
                     </Box>
                     <nav className="navbar navbar-default">
                         <div className="navbar-header">
@@ -50,8 +50,8 @@ const Header = () => {
                         </div>
                     </nav>
                 </Box>
-            </Box>
-        </HeaderStyles >
+            </HeaderWork>
+        </Box>
     )
 }
 export default Header;

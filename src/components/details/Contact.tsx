@@ -7,9 +7,13 @@ import EmailIcon from '@mui/icons-material/Email';
 
 interface Iprops {
     address: string;
+    phone: string;
+    webUrl: string;
+    email: string;
+    openHours: number;
 }
 
-const Contact: React.FC<Iprops> = ({ address }) => {
+const Contact: React.FC<Iprops> = ({ address, email, phone, webUrl }) => {
     return (
         <><Box className="map-details">
             <Box className="map-location">
@@ -24,11 +28,11 @@ const Contact: React.FC<Iprops> = ({ address }) => {
                 </Box>
                 <Box className="map-email-detail">
                     <LanguageIcon />
-                    <a href="#">Emisuthyrning.se</a><br />
+                    <a href="#">{webUrl}</a><br />
                     <PhoneIcon />
-                    <a href="#">0702929275</a><br />
+                    <a href="#">{phone}</a><br />
                     <EmailIcon />
-                    <a href="#">Emiljonsson1992@gmail.com</a><br />
+                    <a href="#">{email}</a><br />
                 </Box>
             </Box>
         </Box>
